@@ -1,7 +1,7 @@
 {
   "name": "stephenharris/behat-rest-api-extension",
   "type": "behat-extension",
-  "description": "Adds contexts for interacting with a REST API, including OAuth1 oauthentication",
+  "description": "Adds contexts for interacting with a REST API, including OAuth1 authentication",
   "keywords": ["behat", "extension", "bdd"],
   "license": "MIT",
   "autoload": {
