@@ -1,0 +1,25 @@
+{
+  "name": "stephenharris/behat-rest-api-extension",
+  "type": "behat-extension",
+  "description": "Adds contexts for interacting with a REST API, including OAuth1 oauthentication",
+  "keywords": ["behat", "extension", "bdd"],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {"StephenHarris\\RestApiExtension\\": "src"}
+  },
+  "require": {
+    "behat/behat": "~3.1.0",
+    "php": ">=5.6.0",
+    "symfony/config": "^2.8",
+    "symfony/dependency-injection": "^2.8",
+    "guzzlehttp/guzzle": "^6.2",
+    "guzzlehttp/oauth-subscriber": "^0.3.0",
+    "phpunit/phpunit": "4 - 5"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "~3.0@RC"
+  },
+	"scripts":{
+		"post-install-cmd": "cp bin/pre-commit.sh .git/hooks"
+	}
+}

@@ -1,0 +1,15 @@
+parameters:
+
+  # Context initialiser.
+  restapi.context.initializer.class: StephenHarris\RestApiExtension\Context\Initialiser\RestApiAwareInitialiser
+
+  # Parameters.
+  restapi.parameters: {}
+
+services:
+  restapi.context.initializer:
+    class: %restapi.context.initializer.class%
+    arguments:
+      - %restapi.parameters%
+    tags:
+      - { name: context.initializer }

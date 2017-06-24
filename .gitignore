@@ -1,0 +1,8 @@
+vendor/
+/site/
+/behat.yml
+
+.DS_Store
+.couscous
+npm-debug.log
+wp-cli.yml

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset>
+  <rule ref="PSR2" />
+  <rule ref="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket">
+    <severity>5</severity>
+  </rule>
+  <rule ref="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket">
+    <severity>5</severity>
+  </rule>
+</ruleset>

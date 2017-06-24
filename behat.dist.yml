@@ -1,0 +1,19 @@
+default:
+  autoload:
+    '': features/bootstrap
+  suites:
+    default:
+      paths:
+        - features
+      contexts:
+        - FeatureContext
+        - StephenHarris\RestApiExtension\Context\RestApiContext
+
+  extensions:
+    StephenHarris\RestApiExtension:
+      endpoint: http://yoursite.com/api
+      oauth1:
+        client_key: clientkey
+        client_secret: clientsecret
+        token_key: tokenkey
+        token_secret: tokensecret
