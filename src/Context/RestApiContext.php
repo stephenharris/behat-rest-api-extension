@@ -131,11 +131,8 @@ class RestApiContext implements Context, RestApiAwareInterface
             $fields[$key] = $this->replacePlaceHolder($val);
         }
 
-        $bodyOption = array(
-          'body' => json_encode($fields),
-        );
-
-        $this->request = new Request($method, $url, $this->headers, $bodyOption['body']);
+        $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        $this->request = new Request($method, $url, $this->headers, http_build_query($fields, '', '&'));
 
         $this->sendRequest();
     }
