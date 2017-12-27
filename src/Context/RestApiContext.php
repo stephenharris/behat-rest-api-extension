@@ -12,7 +12,7 @@ use Behat\Gherkin\Node\TableNode;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
-use PHPUnit_Framework_Assert as Assertions;
+use Assert\Assertion;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -191,7 +191,7 @@ class RestApiContext implements Context, RestApiAwareInterface
     {
         $expected = intval($code);
         $actual = intval($this->response->getStatusCode());
-        Assertions::assertSame($expected, $actual);
+        Assertion::same($actual,$expected);
     }
 
     /**
@@ -205,7 +205,7 @@ class RestApiContext implements Context, RestApiAwareInterface
     {
         $expectedRegexp = '/' . preg_quote($text) . '/i';
         $actual = (string) $this->response->getBody();
-        Assertions::assertRegExp($expectedRegexp, $actual);
+        Assertion::regex($actual,$expectedRegexp);
     }
 
     /**
@@ -219,7 +219,12 @@ class RestApiContext implements Context, RestApiAwareInterface
     {
         $expectedRegexp = '/' . preg_quote($text) . '/';
         $actual = (string) $this->response->getBody();
-        Assertions::assertNotRegExp($expectedRegexp, $actual);
+				try {
+					Assertion::regex($actual,$expectedRegexp);
+					throw new \Exception("Response contains given text");
+				} catch (\AssertionFailedException $e){
+					//Do nothing.
+				}
     }
 
     /**
@@ -250,10 +255,10 @@ class RestApiContext implements Context, RestApiAwareInterface
             );
         }
 
-        Assertions::assertGreaterThanOrEqual(count($etalon), count($actual));
+        Assertion::greaterOrEqualThan(count($actual), count($etalon));
         foreach ($etalon as $key => $needle) {
-            Assertions::assertArrayHasKey($key, $actual);
-            Assertions::assertEquals($etalon[$key], $actual[$key]);
+            Assertion::keyExists($actual, $key);
+            Assertion::eq($actual[$key],$etalon[$key]);
         }
     }
 
